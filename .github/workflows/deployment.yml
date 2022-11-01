@@ -11,17 +11,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v3
         with:
           # “最近更新时间” 等 git 日志相关信息，需要拉取全部提交记录
           fetch-depth: 0
-      - uses: actions/setup-node@v2.4.1
+      - uses: actions/setup-node@v3.5.0
         with:
           node-version: '14'
 
       # cache node_modules
       - name: Cache pnpm modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        uses: pnpm/action-setup@v2.1.0
+        uses: pnpm/action-setup@v2.2.2
         with:
           version: 6.0.2
           run_install: true
